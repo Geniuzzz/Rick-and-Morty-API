@@ -3,10 +3,7 @@ package com.geniuzzz.rickyandmorty
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log.d
-import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.episodes_list.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,25 +28,23 @@ class MainActivity : AppCompatActivity() {
 
         val api = retrofit.create(ApiService::class.java)
 
-        api.getEpisodes().enqueue(object: Callback<List<Result>>{
-            override fun onFailure(call: Call<List<Result>>, t: Throwable) {
-
+        api.getEpisodes().enqueue(object: Callback<Episode>{
+            override fun onFailure(call: Call<Episode>, t: Throwable) {
 
             }
 
-            override fun onResponse(call: Call<List<Result>>, response: Response<List<Result>>) {
-                d("result", "onResponse")
-               showData(response.body()!!)
-            }
+            override fun onResponse(call: Call<Episode>, response: Response<Episode>) {
 
-        } )
+                showData(response.body()!!.results)
+                  }
 
+        })
 
     }
-    fun showData(episode : List<Result>) {
+    fun showData(result: List<Result>) {
         recycler_episodes.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = EpisodeAdapter(episode)
+            adapter = EpisodeAdapter(result)
         }
     }
 }

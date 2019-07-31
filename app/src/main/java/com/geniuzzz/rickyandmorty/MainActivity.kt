@@ -12,6 +12,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+//import okhttp3.OkHttpClient
+//import sun.util.logging.LoggingSupport.setLevel
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,24 +31,22 @@ class MainActivity : AppCompatActivity() {
 
         val api = retrofit.create(ApiService::class.java)
 
-        api.getEpisodes().enqueue(object : Callback<List<Episode>>{
+        api.getEpisodes().enqueue(object: Callback<List<Result>>{
+            override fun onFailure(call: Call<List<Result>>, t: Throwable) {
 
-
-            override fun onResponse(call: Call<List<Episode>>, response: Response<List<Episode>>) {
-
-                d("episode", "onResponse")
-                showData(response.body()!!)
 
             }
-            override fun onFailure(call: Call<List<Episode>>, t: Throwable) {
-                d("episode", "onFailure: ")
 
+            override fun onResponse(call: Call<List<Result>>, response: Response<List<Result>>) {
+                d("result", "onResponse")
+               showData(response.body()!!)
             }
-        })
+
+        } )
 
 
     }
-    fun showData(episode : List<Episode>) {
+    fun showData(episode : List<Result>) {
         recycler_episodes.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = EpisodeAdapter(episode)

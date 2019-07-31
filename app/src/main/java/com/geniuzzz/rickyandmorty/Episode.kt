@@ -4,7 +4,8 @@ import java.lang.reflect.Array
 
 class Episode(
     val info: Info,
-    val results: Result
+    val results: List<Result>
+
 
 )
 class Result(

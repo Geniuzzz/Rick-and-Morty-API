@@ -6,5 +6,5 @@ import retrofit2.http.GET
 interface ApiService {
 
     @GET("/api/episode")
-    fun getEpisodes() : Call<List<Episode>>
+    fun getEpisodes() : Call<List<Result>>
 }

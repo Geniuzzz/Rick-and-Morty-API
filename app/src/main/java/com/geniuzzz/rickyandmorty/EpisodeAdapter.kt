@@ -9,27 +9,25 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.episodes_list.view.*
 
 
-
-class EpisodeAdapter(val episode: List<Episode>):RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
+class EpisodeAdapter(val episode: List<Result>?) : RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
-        val view = LayoutInflater.from(p0.context).inflate(R.layout.episodes_list, p0,false)
+        val view = LayoutInflater.from(p0.context).inflate(R.layout.episodes_list, p0, false)
         return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        return episode.size
+        return episode!!.size
     }
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
-        val episode = episode[p1]
-   Log.d("YES","onResponse: ${episode.results.name}")
+        val episode = episode!![p1]
+        Log.d("YES", "onResponse: ${episode.name}")
 
-        p0.name.text = episode.results.name
+        p0.name.text = episode.name
     }
 
-    class ViewHolder(itemView : View):RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.name
 
-
-}
+    }
 }

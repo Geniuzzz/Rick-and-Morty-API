@@ -1,8 +1,25 @@
 package com.geniuzzz.rickyandmorty
 
+import java.lang.reflect.Array
 
+class Episode(
+    val info: Info,
+    val results: Result
 
-class Episode (
-    var name:String,
-    var characters: String
 )
+class Result(
+    val air_date: String,
+    val characters: List<String>,
+    val created: String,
+    val episode: String,
+    val id: Int,
+    val name: String,
+    val url: String
+)
+class Info(
+    val count: Int,
+    val next: String,
+    val pages: Int,
+    val prev: String
+)
+

@@ -12,6 +12,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+//import okhttp3.OkHttpClient
+//import sun.util.logging.LoggingSupport.setLevel
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,13 +53,19 @@ class MainActivity : AppCompatActivity() {
             override fun onFailure(call: Call<Episode>, t: Throwable) {
                 Log.d("episode", "onFailure: " + t.message)
 
+
+            override fun onResponse(call: Call<List<Result>>, response: Response<List<Result>>) {
+                d("result", "onResponse")
+               showData(response.body()!!)
             }
-        })
+
+        } )
 
 
     }
 
     fun showData(result: List<Result>?) {
+
         recycler_episodes.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = EpisodeAdapter(result)

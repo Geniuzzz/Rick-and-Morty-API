@@ -7,4 +7,5 @@ interface ApiService {
 
     @GET("/api/episode")
     fun getEpisodes(): Call<Episode>
+
 }

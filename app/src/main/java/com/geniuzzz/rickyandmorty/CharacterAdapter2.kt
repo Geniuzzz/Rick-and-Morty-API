@@ -30,6 +30,7 @@ class CharacterAdapter2(val character: List<Characters>?) : RecyclerView.Adapter
         p0.characterName.text = "Name:" + character.name
         p0.characterType.text = "Type:" + character.type
         p0.characterCreated.text = "Created:" + character.created
+        p0.characterId.text = "Id: " + character.id
 
         val thumbnailCharImage = p0.itemView.characterImage
         Picasso.with(p0.itemView.context).load(character.image).into(thumbnailCharImage)
@@ -42,6 +43,7 @@ class CharacterAdapter2(val character: List<Characters>?) : RecyclerView.Adapter
         val characterType: TextView = itemView.characterType
         val characterCreated: TextView = itemView.characterCreated
         val characterGender: TextView = itemView.characterGender
+        val characterId: TextView = itemView.characterId
 
 
     }

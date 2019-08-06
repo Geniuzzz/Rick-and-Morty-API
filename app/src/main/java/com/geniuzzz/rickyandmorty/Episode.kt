@@ -23,6 +23,7 @@ class Info(
     val pages: Int,
     val prev: String
 )
+
 class Characters(
     val created: String,
     val episode: List<String>,

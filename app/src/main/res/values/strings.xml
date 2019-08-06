@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Ricky and Morty Episodes</string>
+
+    <string-array name="Gender">
+        <item>All</item>
+        <item>Male</item>
+        <item>Female</item>
+
+    </string-array>
+
 </resources>

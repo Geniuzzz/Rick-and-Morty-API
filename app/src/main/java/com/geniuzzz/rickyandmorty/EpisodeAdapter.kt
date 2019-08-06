@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.episodes_list.view.*
-import java.lang.reflect.Array
 
 
 class EpisodeAdapter(val episode: List<Result>?):RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
+    var url = ""
+
+
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         val view = LayoutInflater.from(p0.context).inflate(R.layout.episodes_list, p0,false)
         return ViewHolder(view)
@@ -23,7 +25,8 @@ class EpisodeAdapter(val episode: List<Result>?):RecyclerView.Adapter<EpisodeAda
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
         val episode = episode!![p1]
-         Log.d("YES", "onResponse: ${episode.name}")
+         Log.d("YES", "onResponse: ${episode.characters}")
+
 
         p0.name.text = "Name: ${episode.name}"
         p0.created.text = "Created: ${episode.created}"
@@ -32,7 +35,13 @@ class EpisodeAdapter(val episode: List<Result>?):RecyclerView.Adapter<EpisodeAda
         p0.episode.text = "Episode: ${episode.episode}"
 
 
+        var result = episode
+        for (result in result.characters){
+          url = result
+        }
+
     }
+
 
     class ViewHolder(itemView : View):RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.name
@@ -40,6 +49,7 @@ class EpisodeAdapter(val episode: List<Result>?):RecyclerView.Adapter<EpisodeAda
         val id: TextView = itemView.episodeId
         val airDate : TextView = itemView.airDate
         val episode: TextView = itemView.episode
+
 
 
 }

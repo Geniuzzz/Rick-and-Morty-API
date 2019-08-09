@@ -21,14 +21,12 @@ class CharacterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_character)
         supportActionBar?.title = "Rick and Morty Characters"
 
-
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl("http://rickandmortyapi.com")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         val api = retrofit.create(ApiService::class.java)
-
 
         fun makeRequest() {
             var gender = ""
@@ -73,8 +71,4 @@ class CharacterActivity : AppCompatActivity() {
         spinner_gender.adapter = genderAdapter
 
     }
-
-
 }
-
-

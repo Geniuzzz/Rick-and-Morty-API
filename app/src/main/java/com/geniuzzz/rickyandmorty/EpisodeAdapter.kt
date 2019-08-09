@@ -11,7 +11,8 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.episodes_list.view.*
 
 
-class EpisodeAdapter(val context: Context, val result: List<Result>?) : RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
+class EpisodeAdapter(private val context: Context,private val result: List<Result>?) :
+    RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
@@ -38,13 +39,16 @@ class EpisodeAdapter(val context: Context, val result: List<Result>?) : Recycler
             context.startActivity(intent)
 
         }
-
-        p0.name.text = "Name: ${results.name}"
-        p0.created.text = "Created: ${results.created}"
-        p0.airDate.text = "Airdate: ${results.air_date}"
-        p0.id.text = "Id: ${results.id}"
-        p0.episode.text = "Episode: ${results.episode}"
-
+        val newName ="Name: ${results.name}"
+        p0.name.text =  newName
+        val newCreated = "Created: ${results.created}"
+        p0.created.text = newCreated
+        val newAiring = "Airdate: ${results.air_date}"
+        p0.airDate.text = newAiring
+        val newId = "Id: ${results.id}"
+        p0.id.text = newId
+        val newEpisode = "Episode: ${results.episode}"
+        p0.episode.text = newEpisode
 
 
     }

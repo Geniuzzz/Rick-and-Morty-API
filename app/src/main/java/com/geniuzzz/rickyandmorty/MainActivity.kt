@@ -1,14 +1,10 @@
 package com.geniuzzz.rickyandmorty
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log.d
-import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.episodes_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

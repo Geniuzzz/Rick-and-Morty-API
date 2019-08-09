@@ -18,12 +18,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
-    var receivedCharacters = mutableListOf<Characters>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
 
         val retrofit: Retrofit = Retrofit.Builder()
@@ -36,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         ListCharacters.setOnClickListener {
 
-            val intent = Intent (this, CharacterActivity:: class.java)
+            val intent = Intent(this, CharacterActivity::class.java)
             startActivity(intent)
         }
 
@@ -52,47 +49,6 @@ class MainActivity : AppCompatActivity() {
                 val resultList = response.body()!!.results
                 showEpisodes(resultList)
 
-                for (result in resultList) {
-
-                    val urlList = result.characters
-                    val listSize = urlList.size
-
-                    for (urls in urlList) {
-                        val urlNew = urls
-
-                        // val cut = urlNew.substringAfter("https://rickandmortyapi.com/api/character/")
-                        d("receive", "CutId: ${listSize}")
-
-
-                        val api = retrofit.create(ApiService::class.java)
-
-
-
-                        val req = api.getCharacters("${urlNew}")
-
-                        req.enqueue(object : Callback<Characters> {
-                            override fun onFailure(call: Call<Characters>, t: Throwable) {
-                                d("characters", "onFailure")
-
-                            }
-
-                            override fun onResponse(
-                                call: Call<Characters>, response: Response<Characters>
-                            ) {
-
-                                d("characters", "onResponse: ${response.body()!!.name}")
-
-                                val characterList = response.body()!!
-
-                                receivedCharacters.add(characterList)
-                                showCharacters(receivedCharacters)
-                            }
-
-                        })
-
-
-                    }
-                }
             }
         })
     }
@@ -100,14 +56,7 @@ class MainActivity : AppCompatActivity() {
     fun showEpisodes(result: List<Result>) {
         recycler_episodes.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = EpisodeAdapter(result)
+            adapter = EpisodeAdapter(context, result)
         }
     }
-    fun showCharacters(characters: List<Characters>) {
-        recycler_character.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayout.HORIZONTAL, false)
-            adapter = CharacterAdapter2(characters)
-        }
-    }
-
-    }
+}

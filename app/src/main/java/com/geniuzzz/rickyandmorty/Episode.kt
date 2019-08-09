@@ -1,13 +1,14 @@
 package com.geniuzzz.rickyandmorty
 
-import java.lang.reflect.Array
+import android.os.Parcel
+import android.os.Parcelable
 
 class Episode(
     val info: Info,
     val results: List<Result>
-
-
 )
+
+
 class Result(
     val air_date: String,
     val characters: List<String>,
@@ -17,6 +18,7 @@ class Result(
     val name: String,
     val url: String
 )
+
 class Info(
     val count: Int,
     val next: String,

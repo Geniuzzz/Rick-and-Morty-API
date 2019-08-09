@@ -19,6 +19,7 @@ class CharacterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_character)
+        supportActionBar?.title = "Rick and Morty Characters"
 
 
         val retrofit: Retrofit = Retrofit.Builder()
@@ -37,7 +38,7 @@ class CharacterActivity : AppCompatActivity() {
                 "All" -> gender = ""
             }
 
-            api.getCharacterList("${gender}").enqueue(object : Callback<Character> {
+            api.getCharacterList(gender).enqueue(object : Callback<Character> {
                 override fun onFailure(call: Call<Character>, t: Throwable) {
 
                 }

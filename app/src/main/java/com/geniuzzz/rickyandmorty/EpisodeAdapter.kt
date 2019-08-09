@@ -1,56 +1,61 @@
 package com.geniuzzz.rickyandmorty
 
+import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.episodes_list.view.*
 
 
-class EpisodeAdapter(val episode: List<Result>?):RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
-    var url = ""
+class EpisodeAdapter(val context: Context, val result: List<Result>?) : RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
-        val view = LayoutInflater.from(p0.context).inflate(R.layout.episodes_list, p0,false)
+        val view = LayoutInflater.from(p0.context).inflate(R.layout.episodes_list, p0, false)
         return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        return episode!!.size
+        return result!!.size
     }
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
-        val episode = episode!![p1]
-         Log.d("YES", "onResponse: ${episode.characters}")
+        val results = result!![p1]
+        Log.d("YES", "onResponse: ${results.characters}")
+        val id = results.id
+        val episodeTitle = results.name + " (${results.episode})"
 
+        p0.name.setOnClickListener {
 
-        p0.name.text = "Name: ${episode.name}"
-        p0.created.text = "Created: ${episode.created}"
-        p0.airDate.text = "Airdate: ${episode.air_date}"
-        p0.id.text = "Id: ${episode.id}"
-        p0.episode.text = "Episode: ${episode.episode}"
+            val intent = Intent(context, CharacterDetailActivity::class.java)
+            intent.putExtra("EPISODE_ID", id)
+            intent.putExtra("EPISODE_TITLE", episodeTitle)
 
+            context.startActivity(intent)
 
-        var result = episode
-        for (result in result.characters){
-          url = result
         }
+
+        p0.name.text = "Name: ${results.name}"
+        p0.created.text = "Created: ${results.created}"
+        p0.airDate.text = "Airdate: ${results.air_date}"
+        p0.id.text = "Id: ${results.id}"
+        p0.episode.text = "Episode: ${results.episode}"
+
+
 
     }
 
-
-    class ViewHolder(itemView : View):RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.name
         val created: TextView = itemView.created
         val id: TextView = itemView.episodeId
-        val airDate : TextView = itemView.airDate
+        val airDate: TextView = itemView.airDate
         val episode: TextView = itemView.episode
 
 
-
-}
+    }
 }

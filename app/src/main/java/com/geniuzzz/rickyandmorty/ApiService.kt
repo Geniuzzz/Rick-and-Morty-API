@@ -2,6 +2,7 @@ package com.geniuzzz.rickyandmorty
 
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 import retrofit2.http.Url
 
@@ -11,10 +12,14 @@ interface ApiService {
     fun getEpisodes() : Call<Episode>
 
     @GET
-    fun getCharacters(@Url anotherUrl: String): Call <Characters>
+    fun getCharacterDetails(@Url anotherUrl: String) : Call<Characters>
+
+    @GET("api/episode/{id}")
+    fun getEpisodeDetails(@Path("id")id: Int): Call <Result>
 
     @GET("/api/character/")
     fun getCharacterList(@Query("gender") gender: String?): Call <Character>
+
 
 
 }

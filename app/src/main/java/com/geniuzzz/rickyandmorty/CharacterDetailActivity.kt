@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class CharacterDetailActivity : AppCompatActivity() {
 
-    var receivedCharacters = mutableListOf<Characters>()
+    var receivedCharacters = mutableListOf<CharacterResult>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,18 +53,18 @@ class CharacterDetailActivity : AppCompatActivity() {
                 episodeAiring.text = episodeAirings
                 val idOfEpisode = "Id: " + details.id
                 IdOfEpisode.text = idOfEpisode
-                val textViewed = "Characters in this episode"
+                val textViewed = "CharacterResult in this episode"
                 textView5.text = textViewed
 
                 val characterList = response.body()!!.characters
 
                 for (url in characterList) {
-                    apiService.getCharacterDetails(url).enqueue(object : Callback<Characters> {
-                        override fun onFailure(call: Call<Characters>, t: Throwable) {
+                    apiService.getCharacterDetails(url).enqueue(object : Callback<CharacterResult> {
+                        override fun onFailure(call: Call<CharacterResult>, t: Throwable) {
 
                         }
 
-                        override fun onResponse(call: Call<Characters>, response: Response<Characters>) {
+                        override fun onResponse(call: Call<CharacterResult>, response: Response<CharacterResult>) {
                             receivedCharacters.add(response.body()!!)
                             showCharacters(receivedCharacters)
                         }
@@ -74,14 +74,14 @@ class CharacterDetailActivity : AppCompatActivity() {
         })
     }
 
-    fun showCharacters(characters: List<Characters>) {
+    fun showCharacters(characters: List<CharacterResult>) {
         recyclerView_episode2.apply {
             layoutManager = LinearLayoutManager(this@CharacterDetailActivity, LinearLayout.HORIZONTAL, false)
             adapter = CharacterDetailAdapter(characters)
         }
     }
 
-    private class CharacterDetailAdapter(val character: List<Characters>) :
+    private class CharacterDetailAdapter(val character: List<CharacterResult>) :
         RecyclerView.Adapter<CharacterDetailAdapter.ViewHolder>() {
         override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
             val v = LayoutInflater.from(p0.context).inflate(R.layout.character_list, p0, false)

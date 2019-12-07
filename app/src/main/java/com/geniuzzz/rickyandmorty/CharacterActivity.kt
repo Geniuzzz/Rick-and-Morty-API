@@ -19,7 +19,7 @@ class CharacterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_character)
-        supportActionBar?.title = "Rick and Morty Characters"
+        supportActionBar?.title = "Rick and Morty CharacterResult"
 
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl("http://rickandmortyapi.com")
@@ -63,12 +63,10 @@ class CharacterActivity : AppCompatActivity() {
         recycler_characters.apply {
             layoutManager = LinearLayoutManager(this@CharacterActivity, LinearLayout.HORIZONTAL, false)
             adapter = CharacterAdapter(character)
-
         }
         val genderAdapter =
             ArrayAdapter.createFromResource(this, R.array.Gender, android.R.layout.simple_spinner_item)
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner_gender.adapter = genderAdapter
-
     }
 }

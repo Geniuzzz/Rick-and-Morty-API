@@ -12,7 +12,7 @@ interface ApiService {
     fun getEpisodes() : Call<Episode>
 
     @GET
-    fun getCharacterDetails(@Url anotherUrl: String) : Call<Characters>
+    fun getCharacterDetails(@Url anotherUrl: String) : Call<CharacterResult>
 
     @GET("api/episode/{id}")
     fun getEpisodeDetails(@Path("id")id: Int): Call <Result>

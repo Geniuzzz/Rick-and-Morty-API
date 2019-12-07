@@ -1,13 +1,10 @@
 package com.geniuzzz.rickyandmorty
 
-import android.os.Parcel
-import android.os.Parcelable
-
-class Episode(
+data class Episode(
+    
     val info: Info,
     val results: List<Result>
 )
-
 
 class Result(
     val air_date: String,
@@ -26,7 +23,7 @@ class Info(
     val prev: String
 )
 
-class Characters(
+class CharacterResult(
     val created: String,
     val episode: List<String>,
     val gender: String,
@@ -40,4 +37,18 @@ class Characters(
     val type: String,
     val url: String
 )
+data class Origin(
+    val name: String,
+    val url: String
+)
 
+data class Location(
+    val name: String,
+    val url: String
+)
+
+
+data class Character(
+    val info: Info,
+    val results: List<CharacterResult>
+)

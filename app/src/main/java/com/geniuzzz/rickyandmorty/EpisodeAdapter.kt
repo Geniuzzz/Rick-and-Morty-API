@@ -11,8 +11,7 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.episodes_list.view.*
 
 
-class EpisodeAdapter(private val context: Context,private val result: List<Result>?) :
-    RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
+class EpisodeAdapter(private val context: Context,private val result: List<Result>?) : RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
